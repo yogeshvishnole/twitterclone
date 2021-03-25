@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const session = require('express-session');
 import BusinessError from './exceptions/BusinessError';
 import globalErrorHandler from './exceptions/errorHandler';
-
+import db from './database';
 //middlewares
 import { requireLogin } from './middlewares/authMiddlewares';
 //page routes
@@ -26,18 +26,6 @@ import messagesApiRouter from './routes/api/messages';
 import notificationsApiRouter from './routes/api/notifications';
 
 const app = express();
-
-mongoose
-  .connect(
-    'mongodb+srv://mongo-chata:LJb0eQ384qwoNxNs@cluster0.0sfij.mongodb.net/twitterCloneDatabase?retryWrites=true&w=majority',
-    {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-    },
-  )
-  .then(() => console.log('DB connection successful'));
 
 app.set('view engine', 'pug');
 app.set('views', 'src/views');
